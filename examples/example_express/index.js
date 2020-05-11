@@ -27,7 +27,11 @@ app.post('/contact', (request, response) => {
   debug(`\tsubject: ${params.subject}`);
   debug(`\tmessage: ${params.message}`);
 
-  response.sendFile(path.join(__dirname, 'public/contact_sent.html'));
+  if (params.email && params.subject && params.message) {
+    response.sendFile(path.join(__dirname, 'public/contact_sent.html'));
+  } else {
+    response.sendFile(path.join(__dirname, 'public/contact_error.html'));
+  }
 });
 
 app.use(express.static('public'));
