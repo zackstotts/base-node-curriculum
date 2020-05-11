@@ -1,7 +1,7 @@
 {
   "name": "@ranken/example_node",
   "version": "1.0.0",
-  "description": "Node.js Example Project",
+  "description": "Express.js Example Project",
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config index.js",
@@ -51,7 +51,9 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
