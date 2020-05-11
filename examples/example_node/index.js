@@ -27,11 +27,17 @@ const server = http.createServer((request, response) => {
         request.on('end', () => {
           debugServer(body);
           const params = querystring.parse(body);
+
           debugServer('Message Received!');
           debugServer(`\temail: ${params.email}`);
           debugServer(`\tsubject: ${params.subject}`);
           debugServer(`\tmessage: ${params.message}`);
-          serveStaticFile(response, '/contact_sent.html');
+
+          if (params.email && params.subject && params.message) {
+            serveStaticFile(response, '/contact_sent.html');
+          } else {
+            serveStaticFile(response, '/contact_error.html');
+          }
         });
       } else {
         serveStaticFile(response, '/contact.html');
