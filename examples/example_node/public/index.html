@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Node.js Example Project</title>
-    <link rel="stylesheet" href="css/lux.bootstrap.min.css" />
+    <link rel="stylesheet" href="css/themes/lux.bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
 
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/054ec314b5.js" ></script>
     <script
       defer
       crossorigin="anonymous"
@@ -28,7 +29,7 @@
     <script defer src="js/main.js"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
       <a class="navbar-brand" href="#">Node.js Example</a>
       <button
@@ -64,7 +65,7 @@
       </p>
     </section>
 
-    <main class="container">
+    <main class="container flex-grow-1">
       <h1>Home Page</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio quisquam nulla ipsum
@@ -97,5 +98,9 @@
         quasi, qui porro eveniet voluptates sunt!
       </p>
     </main>
+
+    <footer class="bg-dark text-white text-right p-2">
+        &copy; Paul Smith 2020
+    </footer>
   </body>
 </html>
