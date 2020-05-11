@@ -1,4 +1,5 @@
-const debug = require('debug')('app:startup');
+const debugServer = require('debug')('app:server');
+const debugFiles = require('debug')('app:files');
 const http = require('http');
 const fs = require('fs');
 
@@ -6,7 +7,7 @@ const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 3000;
 
 const server = http.createServer((request, response) => {
-  console.log(`${request.method} ${request.url}`);
+  debugServer(`${request.method} ${request.url}`);
 
   const url = new URL(request.url, `http://${request.headers.host}`);
   switch (url.pathname) {
@@ -24,7 +25,7 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  debugServer(`Server running at http://${hostname}:${port}/`);
 });
 
 function serveStaticFile(response, url) {
@@ -33,16 +34,19 @@ function serveStaticFile(response, url) {
     if (!exists) {
       response.statusCode = 404;
       response.setHeader('Content-Type', 'text/plain');
-      response.end("file not found");
+      response.end('FILE NOT FOUND');
+      debugFiles(`FILE NOT FOUND ${filename}`);
     } else {
       fs.readFile(filename, (err, data) => {
         if (err) {
           response.statusCode = 404;
           response.setHeader('Content-Type', 'application/json');
           response.end(JSON.stringify(err));
+          debugFiles(`ERROR ${filename}`);
         } else {
           response.statusCode = 200;
           response.end(data);
+          debugFiles(`SERVED ${filename}`);
         }
       });
     }
