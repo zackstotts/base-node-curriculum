@@ -2,6 +2,7 @@ const debugServer = require('debug')('app:server');
 const debugFiles = require('debug')('app:files');
 const http = require('http');
 const fs = require('fs');
+const querystring = require('querystring');
 
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 3000;
@@ -16,8 +17,29 @@ const server = http.createServer((request, response) => {
       serveStaticFile(response, '/index.html');
       break;
     }
+    case '/contact': {
+      // Contact Form
+      if (request.method == 'POST') {
+        let body = '';
+        request.on('data', (chunk) => {
+          body += chunk.toString();
+        });
+        request.on('end', () => {
+          debugServer(body);
+          const params = querystring.parse(body);
+          debugServer('Message Received!');
+          debugServer(`\temail: ${params.email}`);
+          debugServer(`\tsubject: ${params.subject}`);
+          debugServer(`\tmessage: ${params.message}`);
+          serveStaticFile(response, '/contact_sent.html');
+        });
+      } else {
+        serveStaticFile(response, '/contact.html');
+      }
+      break;
+    }
     default: {
-      // Serve static files from public dir
+      // Otherwise, serve static files from public dir
       serveStaticFile(response, url.pathname);
       break;
     }
@@ -46,7 +68,7 @@ function serveStaticFile(response, url) {
         } else {
           response.statusCode = 200;
           response.end(data);
-          debugFiles(`SERVED ${filename}`);
+          //debugFiles(`SERVED ${filename}`);
         }
       });
     }
