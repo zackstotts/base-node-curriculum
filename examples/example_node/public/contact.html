@@ -45,58 +45,50 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="index.html"><i class="fa-fw fas fa-home"></i> Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="about.html"><i class="fa-fw fas fa-user"></i> About</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="contact.html"><i class="fa-fw fas fa-address-card"></i> Contact</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <section class="jumbotron bg-dark text-white">
-      <h1 class="display-4 text-white">Node.js Example Project</h1>
-      <p class="lead text-white">
-        Welcome to your first Node.js website.
-      </p>
-    </section>
-
-    <main class="container flex-grow-1">
-      <h1><i class="fa-fw fas fa-home"></i> Home Page</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio quisquam nulla ipsum
-        tempore labore. Rerum cupiditate ad, eum perspiciatis exercitationem deleniti, dicta dolor
-        quisquam repellat magni corporis culpa a.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid aperiam, unde ab dicta
-        accusantium laborum veritatis ex illo. Ex ipsa placeat ullam ut facere nam quasi, nisi
-        nostrum et? Sequi!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur consequatur delectus
-        ex autem at. Repellendus assumenda harum ea optio inventore cupiditate, doloribus natus
-        dolor, aliquam voluptates aut, delectus est praesentium.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ut cumque dolores quod
-        inventore impedit sed recusandae enim cum voluptatem vel beatae veniam, fugit accusantium
-        quo? Quae quidem repellendus distinctio.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ad, voluptatibus quisquam
-        cupiditate neque fuga. Natus dolores, ratione tempora placeat odit repellendus dolor.
-        Laudantium accusantium porro ducimus inventore consequuntur asperiores.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique dolorum odio ut molestias
-        esse voluptatem facere temporibus, sequi ipsa explicabo distinctio nemo reiciendis tempore
-        quasi, qui porro eveniet voluptates sunt!
-      </p>
+    <main class="container flex-grow-1 mt-3 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title m-1">
+            <i class="fa-fw fas fa-address-card"></i>
+            Contact Us
+          </h1>
+        </div>
+        <div class="card-body">
+          <form class="form" id="Contact-form" method="POST" action="/contact">
+            <div class="form-group">
+              <label for="Contact-email">Email Address</label>
+              <input required type="email" class="form-control" id="Contact-email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="Contact-subject">Subject</label>
+              <input required type="text" class="form-control" id="Contact-subject" name="subject">
+            </div>
+            <div class="form-group">
+              <label for="Contact-message">Message</label>
+              <textarea rows="7" class="form-control" id="Contact-message" name="message"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">
+                Send
+                <i class="fa-fw fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
 
     <footer class="bg-dark text-white text-right p-2">
