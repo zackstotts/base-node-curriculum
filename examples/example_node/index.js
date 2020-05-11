@@ -22,7 +22,7 @@ const server = http.createServer((request, response) => {
       if (request.method == 'POST') {
         let body = '';
         request.on('data', (chunk) => {
-          body += chunk.toString();
+          body += chunk;
         });
         request.on('end', () => {
           debugServer(body);
