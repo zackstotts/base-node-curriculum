@@ -15,6 +15,8 @@
   "html.format.indentInnerHtml": false,
   "html.format.endWithNewline": true,
   "cSpell.words": [
-    "crossorigin"
+    "buildpacks",
+    "crossorigin",
+    "esversion"
   ]
 }

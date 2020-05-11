@@ -12,26 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/paulsmithkc/base-node-curriculum.git"
   },
-  "keywords": [
-    "ranken",
-    "technical",
-    "college",
-    "node.js",
-    "example",
-    "template",
-    "project",
-    "bootstrap",
-    "fontawesome",
-    "navbar",
-    "contact",
-    "form"
-  ],
   "author": "Paul Smith",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/paulsmithkc/base-node-curriculum/issues"
-  },
-  "homepage": "https://github.com/paulsmithkc/base-node-curriculum#readme",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
