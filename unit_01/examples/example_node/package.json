@@ -28,16 +28,12 @@
       "value": "app:*"
     }
   },
-  "jshintConfig": {
-    "esversion": 6
-  },
   "dependencies": {
     "debug": "^4.1.1",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
-    "jshint": "^2.11.0",
-    "nodemon": "^2.0.3"
+    "eslint-config-google": "^0.14.0"
   }
 }
