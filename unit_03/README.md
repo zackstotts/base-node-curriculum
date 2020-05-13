@@ -7,7 +7,7 @@ Topics Covered
 * Indexes (https://docs.mongodb.com/manual/indexes/index.html)
 * Domain-Driven Design
 
-Installing MongoDB Server & Compass
+### Installing MongoDB Server & Compass
 1. Download MongoDB Community Server
 https://www.mongodb.com/download-center/community
 2. Install with default settings

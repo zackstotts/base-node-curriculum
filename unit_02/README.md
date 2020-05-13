@@ -12,3 +12,8 @@ Topics Covered
 * Database Indexes (https://www.essentialsql.com/what-is-a-database-index/)
 * Primary Keys & Foreign Keys (https://www.essentialsql.com/what-is-the-difference-between-a-primary-key-and-a-foreign-key/)
 * Unique Constraints (https://www.essentialsql.com/primary-and-unique-key/)
+
+### Installing MySQL Server
+1. Download MySQL Community Server from
+https://dev.mysql.com/downloads/windows/installer/8.0.html
+2. Install with default settings
