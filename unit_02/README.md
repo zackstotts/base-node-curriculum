@@ -22,7 +22,8 @@ https://dev.mysql.com/downloads/windows/installer/8.0.html
 5. Start the download and wait for it to complete
 6. Choose "Standalone MySQL Server"
 7. Select Next
-8. Use Strong Password Encryption for Authentication
+8. Use Legacy Password Support ~~Strong Password Encryption for Authentication~~
+https://stackoverflow.com/a/56509065/8645145
 9. Select Next
 10. Select a MySQL Root Password (Do not forget this password!)
 11. Add a MySQL User Account with the name "admin" and role "DB Admin" 
