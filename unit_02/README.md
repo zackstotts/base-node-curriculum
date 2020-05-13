@@ -1,5 +1,5 @@
 ## Unit 02
-Topics Covered
+### Topics Covered
 * SQL Syntax (https://www.khanacademy.org/computing/computer-programming/sql)
 * MySQL Server (https://dev.mysql.com/doc/refman/8.0/en/)
 * MySql Driver (https://www.npmjs.com/package/mysql)
