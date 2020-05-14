@@ -1,5 +1,5 @@
 {
-  "name": "@ranken/notepad_mongodb",
+  "name": "@ranken/notepad_mongodb_react",
   "version": "1.0.0",
   "description": "Notepad example project w/ MongoDB",
   "main": "index.js",
