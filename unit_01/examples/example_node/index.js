@@ -33,9 +33,11 @@ const server = http.createServer((request, response) => {
           debug(`\tmessage: ${params.message}`);
 
           if (params.email && params.subject && params.message) {
-            serveStaticFile(response, '/contact_sent.html');
+            response.statusCode = 200;
+            response.end('Message has been sent.');
           } else {
-            serveStaticFile(response, '/contact_error.html');
+            response.statusCode = 400;
+            response.end('Please complete all fields.');
           }
         });
       } else {
