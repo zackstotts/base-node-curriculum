@@ -3,9 +3,6 @@ const http = require('http');
 const fs = require('fs');
 const querystring = require('querystring');
 
-const hostname = process.env.HOSTNAME || 'localhost';
-const port = process.env.PORT || 3000;
-
 const server = http.createServer((request, response) => {
   debug(`${request.method} ${request.url}`);
 
@@ -53,7 +50,9 @@ const server = http.createServer((request, response) => {
   }
 });
 
-server.listen(port, hostname, () => {
+const hostname = process.env.HOSTNAME || 'localhost';
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
   debug(`Server running at http://${hostname}:${port}/`);
 });
 
