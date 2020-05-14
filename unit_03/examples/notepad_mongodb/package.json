@@ -22,12 +22,6 @@
   "engines": {
     "node": "12.16.3"
   },
-  "env": {
-    "DEBUG": {
-      "description": "Which debug channels should be monitored?",
-      "value": "app:*"
-    }
-  },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "config": "^3.3.1",
