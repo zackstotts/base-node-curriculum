@@ -25,6 +25,7 @@
 # ignore some files when determining the project's primary language
 public/* linguist-vendored
 node_modules/* linguist-vendored
+css/themes/* linguist-vendored
 
 ## SOURCE CODE
 *.bat      text eol=crlf
