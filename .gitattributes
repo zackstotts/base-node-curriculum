@@ -19,6 +19,8 @@
 *.js linguist-language=JavaScript
 *.json linguist-language=JavaScript
 *.jsx linguist-language=JavaScript
+*.html linguist-vendored
+*.css linguist-vendored
 
 # ignore some files when determining the project's primary language
 public/* linguist-vendored
