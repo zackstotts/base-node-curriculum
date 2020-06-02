@@ -1,5 +1,5 @@
 # Ranken Technical College - AWD 1111
-## Node.js Curriculum Development
+## Setup Instructions
 
 Install the the following npm packages globally
 * npm install nodemon -g
