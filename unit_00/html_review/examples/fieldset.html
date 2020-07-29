@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fieldset</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font: 100% arial, helvetica, sans-serif;
+      }
+      body {
+        width: 90%;
+        margin: 2rem auto;
+      }
+      label {
+        display: inline-block;
+        width: 7rem;
+      }
+      input,
+      select {
+        width: 15rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Contact Info</legend>
+        <div>
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" type="text" />
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text" />
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" />
+        </div>
+        <div>
+          <label for="tel">Cell #</label>
+          <input id="tel" name="tel" type="tel" />
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Address</legend>
+        <div>
+          <label for="addressStreet">Street Address</label>
+          <input id="addressStreet" name="addressStreet" type="text" />
+        </div>
+        <div>
+          <label for="addressApt">Apt #</label>
+          <input id="addressApt" name="addressApt" type="text" />
+        </div>
+        <div>
+          <label for="addressState">State</label>
+          <select id="addressState" name="addressState">
+            <option value="">-- State --</option>
+            <option value="MO">Missouri</option>
+            <option value="IL">Illinois</option>
+          </select>
+        </div>
+        <div>
+          <label for="addressCity">City</label>
+          <input id="addressCity" name="addressCity" type="text" />
+        </div>
+        <div>
+          <label for="addressZip">Zip Code</label>
+          <input id="addressZip" name="addressZip" type="text" />
+        </div>
+      </fieldset>
+      <div style="padding: 1rem;">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
