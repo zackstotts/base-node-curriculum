@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cowboy Boots Inc. LLC</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        font: 100% Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        background: red;
+        color: white;
+        padding: 0.5rem;
+        border-bottom: 1px solid black;
+      }
+      header nav {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+      }
+      header nav a {
+        text-decoration: none;
+      }
+
+      aside {
+        background: darkred;
+        color: white;
+        padding: 0.5rem;
+        padding-bottom: 0;
+        border-bottom: 1px solid black;
+      }
+      aside form {
+        display: flex;
+      }
+      aside input {
+        flex-grow: 1;
+        border-radius: 1em;
+        padding: 0.25em;
+      }
+      aside nav {
+        display: flex;
+      }
+      aside nav a {
+        display: block;
+        padding: 0.5em;
+        border-right: 2px solid black;
+      }
+      aside nav a:last-child {
+        border-right: none;
+      }
+
+      main {
+        flex-grow: 1;
+        padding: 0.5rem;
+      }
+      main h1 {
+        text-decoration: underline;
+        margin-bottom: 0.25rem;
+      }
+      main .breadcrumbs {
+        padding: 0.5em;
+      }
+      main .breadcrumbs a {
+        text-decoration: none;
+      }
+      main .breadcrumbs a::after {
+        content: '>';
+        margin: 0.5em;
+        color: black;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        padding: 0.5rem;
+      }
+      footer nav {
+        display: flex;
+        flex-direction: column;
+      }
+
+      header a,
+      aside a,
+      footer a {
+        color: white;
+      }
+      header a:hover,
+      aside a:hover,
+      footer a:hover,
+      header a:focus,
+      aside a:focus,
+      footer a:focus {
+        color: grey;
+      }
+      main a {
+        color: blue;
+      }
+      main a:hover,
+      main a:focus {
+        color: red;
+      }
+
+      #LogoIcon {
+        width: 2rem;
+        height: 2rem;
+      }
+      #LogoText {
+        font-size: 1.5rem;
+        font-weight: bold;
+        flex-grow: 1;
+      }
+      #CopyrightText {
+        font-weight: bold;
+      }
+      header nav img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .sr-only {
+        display: none;
+      }
+
+      .ProductsContainer {
+        display: flex;
+        flex-direction: column;
+      }
+      .Product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+      }
+      .ProductImage {
+        min-width: 16px;
+        min-height: 16px;
+        max-width: 100%;
+        max-height: 200px;
+        background: darkred;
+      }
+      .ProductName {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      @media only screen and (min-width: 900px) {
+        #sidebar-main {
+          display: flex;
+          flex-direction: row;
+        }
+        aside {
+          width: 200px;
+        }
+        aside nav {
+          flex-direction: column;
+        }
+        aside nav a {
+          border-right: none;
+        }
+        footer {
+          display: flex;
+          flex-direction: row;
+        }
+        footer nav {
+          flex-direction: row;
+          flex-grow: 1;
+        }
+        footer nav a {
+          margin-right: 0.5rem;
+        }
+        .ProductsContainer {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .Product {
+          flex-basis: 250px;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img id="LogoIcon" src="images/logo.png" alt="" />
+      <span id="LogoText">Cowboy Boots Inc. LLC</span>
+      <nav>
+        <a href="/cart">
+          <img id="CartIcon" src="images/cart.png" alt="" title="My Cart" />
+          <span class="sr-only">My Cart</span>
+        </a>
+        <a href="/login">
+          <img id="LoginIcon" src="images/login.png" alt="" title="Login" />
+          <span class="sr-only">Login</span>
+        </a>
+      </nav>
+    </header>
+    <div id="sidebar-main">
+      <aside>
+        <form id="SearchForm" action="/search" method="GET">
+          <input id="SearchBox" name="q" type="search" placeholder="Search..." />
+        </form>
+        <nav>
+          <a href="/category/boots">Boots</a>
+          <a href="/category/spurs">Spurs</a>
+          <a href="/category/buckles">Belt Buckles</a>
+          <a href="/category/shirts">Shirts</a>
+          <a href="/category/hats">Hats</a>
+        </nav>
+      </aside>
+      <main>
+        <h1>Boots</h1>
+        <nav class="breadcrumbs">
+          <a href="/">Home</a>
+          <a href="/products">Products</a>
+          <span>Boots</span>
+        </nav>
+        <div class="ProductsContainer">
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Big Boy Boots</div>
+              <div class="ProductSizes">Sizes: 5-14</div>
+              <div class="ProductStyles">Leather, Ostrich, Zebra</div>
+            </div>
+          </section>
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Small Humanoid Boots</div>
+              <div class="ProductSizes">Sizes: 1-4</div>
+              <div class="ProductStyles">Leather, Lights, Heelys</div>
+            </div>
+          </section>
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Grandpa's Boots</div>
+              <div class="ProductSizes">Sizes: ???</div>
+              <div class="ProductStyles">Leather, Therapeutic, Life Alert</div>
+            </div>
+          </section>
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Big Boy Boots</div>
+              <div class="ProductSizes">Sizes: 5-14</div>
+              <div class="ProductStyles">Leather, Ostrich, Zebra</div>
+            </div>
+          </section>
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Small Humanoid Boots</div>
+              <div class="ProductSizes">Sizes: 1-4</div>
+              <div class="ProductStyles">Leather, Lights, Heelys</div>
+            </div>
+          </section>
+          <section class="Product">
+            <img class="ProductImage" src="images/logo.png" alt="" />
+            <div>
+              <div class="ProductName">Grandpa's Boots</div>
+              <div class="ProductSizes">Sizes: ???</div>
+              <div class="ProductStyles">Leather, Therapeutic, Life Alert</div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <footer>
+      <nav>
+        <a href="/legal-info">Legal Info</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+      </nav>
+      <span id="CopyrightText">&copy; Copyright Cowboy Boots Inc. LLC</span>
+    </footer>
+  </body>
+</html>
