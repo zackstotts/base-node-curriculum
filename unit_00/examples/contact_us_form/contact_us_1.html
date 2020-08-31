@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <style>
+      body {
+        font-size: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 600px;
+        margin: 1rem auto;
+      }
+      label {
+        font-weight: bold;
+      }
+      input,
+      textarea {
+        margin-bottom: 1rem;
+      }
+      button {
+        font-family: inherit;
+        align-self: flex-start;
+        min-width: 100px;
+      }
+      .button-container {
+        align-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="ContactUsForm" method="POST" action="sent.html">
+      <label for="name">Full Name</label>
+      <input id="name" name="name" type="text" placeholder="John Doe" autocomplete="name" />
+
+      <label for="email">Email Address</label>
+      <input id="email" name="email" type="email" placeholder="johndoe@gmail.com" autocomplete="email" />
+
+      <label for="zipcode">Zip Code</label>
+      <input 
+        id="zipcode" 
+        name="zipcode" 
+        type="text" 
+        placeholder="12345" 
+        autocomplete="postal-code"
+        minlength="5"
+        maxlength="5"
+        pattern="[0-9]{5}" />
+
+      <label for="subject">Subject</label>
+      <input id="subject" name="subject" type="text" autocomplete="off" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="7" cols="40"></textarea>
+
+      <div class="button-container">
+        <button type="submit">Send</button>
+        <button type="reset">Reset</button>
+      </div>
+
+      <div id="results"></div>
+    </form>
+  </body>
+</html>
