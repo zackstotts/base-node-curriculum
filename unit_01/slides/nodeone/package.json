@@ -2,8 +2,11 @@
   "name": "nodeone",
   "version": "1.0.0",
   "description": "This project creates a simple node.js web server",
-  "main": "main.js",
   "scripts": {
+    "program1": "node program1.js",
+    "program2": "node program2.js",
+    "program3": "node program3.js",
+    "program4": "node program4.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeff Scott",
