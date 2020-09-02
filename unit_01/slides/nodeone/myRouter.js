@@ -1,18 +1,19 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 
 // define the home page route
-router.get('/public/', (req, res) => {
-  res.send('index.html');
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 // define the contact route
-router.get('/public/contact', (req, res) => {
-  res.send('contact.html');
+router.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/contact.html'));
 });
-// define the registration route
-router.get('/public/registration', (req, res) => {
-  res.send('registration.html');
+// define the register route
+router.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/register.html'));
 });
 
 module.exports = router;
