@@ -9,7 +9,7 @@
     "program4": "node program4.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeff Scott",
+  "author": "Jeff Scott & Paul Smith",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
