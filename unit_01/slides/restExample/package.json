@@ -1,16 +1,16 @@
 {
   "name": "restexample",
   "version": "1.0.0",
-  "description": "\u0016Restful API Example",
+  "description": "Restful API Example",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "nodemon": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeff Scott",
+  "author": "Jeff Scott & Paul Smith",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "fs": "0.0.1-security"
+    "express": "^4.17.1"
   }
 }

@@ -1,57 +1,76 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const app = express();
-const fs = require("fs");
 
-var id = 2;
-
-app.delete('/deleteUser', function (req, res) {
-// First read existing users.
-fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-data = JSON.parse( data );
-delete data["user" + 2];
-       
-console.log( data );
-res.end( JSON.stringify(data));
-});
-})
-var user = {
-    "user4" : {
-       "name" : "mohit",
-       "password" : "password4",
-       "profession" : "teacher",
-       "id": 4
+const readUsers = (callback) => {
+  fs.readFile(path.join(__dirname, 'users.json'), 'utf8', (err, data) => {
+    if (!err) {
+      data = JSON.parse(data);
+    } else {
+      data = null;
     }
- }
- 
- app.post('/addUser', function (req, res) {
-    // First read existing users.
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-       data = JSON.parse( data );
-       data["user4"] = user["user4"];
-       console.log( data );
-       res.end( JSON.stringify(data));
-    });
- })
-
- app.get('/:id', function (req, res) {
-    // First read existing users.
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-       var users = JSON.parse( data );
-       var user = users["user" + req.params.id] 
-       console.log( user );
-       res.end( JSON.stringify(user));
-    });
- })
-
-app.get('/listUsers', function (req, res) {
-  fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-     console.log( data );
-     res.end( data );
+    callback(err, data);
   });
-})
+};
 
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-   console.log("Example app listening at http://%s:%s", host, port)
-})
+app.get('/user', (req, res, next) => {
+  readUsers((err, users) => {
+    if (!err) {
+      console.log(users);
+      res.json(users);
+    } else {
+      next(err);
+    }
+  });
+});
+
+app.get('/user/:id', (req, res, next) => {
+  readUsers((err, users) => {
+    if (!err) {
+      const id = req.params.id;
+      const user = users['user' + id];
+      console.log(user);
+      res.json(user);
+    } else {
+      next(err);
+    }
+  });
+});
+
+app.post('/user', (req, res, next) => {
+  readUsers((err, users) => {
+    if (!err) {
+      const user4 = {
+        id: 4,
+        name: 'mohit',
+        password: 'password4',
+        profession: 'teacher',
+      };
+      users['user4'] = user4;
+      console.log(users);
+      res.json(users);
+    } else {
+      next(err);
+    }
+  });
+});
+
+app.delete('/user/:id', (req, res, next) => {
+  readUsers((err, users) => {
+    if (!err) {
+      const id = req.params.id;
+      delete users['user' + id];
+      console.log(users);
+      res.json(users);
+    } else {
+      next(err);
+    }
+  });
+});
+
+const HOST = 'localhost';
+const PORT = process.env.PORT || 8081;
+app.listen(PORT, () => {
+  console.log('Example app listening at http://%s:%s', HOST, PORT);
+});
