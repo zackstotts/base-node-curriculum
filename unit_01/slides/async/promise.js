@@ -1,5 +1,10 @@
 const wait = (delay) => new Promise((resolve, reject) => setTimeout(() => resolve(), delay));
 
+// const getTodo = () => {
+//   wait(2000);
+//   return 'Complete Code Example';
+// }
+
 const getTodo = () =>
   wait(2000).then(() => 'Complete Code Example');
 
