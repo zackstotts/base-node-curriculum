@@ -15,7 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.get('/', (req, res) => res.render('home', { title: 'Home Page' }));
-app.get('/contact', (req, res) => res.render('contact', { title: 'Contact Form' }));
+app.get('/contact', (req, res) =>
+  res.render('contact', { title: 'Contact Form' })
+);
 app.post('/contact', (req, res) => {
   const name = req.body.name;
   const message = req.body.message;
@@ -40,7 +42,11 @@ app.post('/contact', (req, res) => {
   }
 
   data.result = data.isValid ? 'Message Sent!' : 'Please fix the errors above!';
-  res.render('contact', data);
+  if (req.accepts('html')) {
+    res.render('contact', data);
+  } else {
+    res.json(data);
+  }
 });
 
 // static files
@@ -48,4 +54,4 @@ app.use('/', express.static('public'));
 
 // start app
 const port = process.env.PORT || 3000;
-app.listen(port, () => debug(`Server started on port ${port}`))
+app.listen(port, () => debug(`Server started on port ${port}`));
