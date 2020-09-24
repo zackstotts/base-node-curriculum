@@ -60,7 +60,7 @@ create index order_product_product_id
 
 -- populate the tables
 
-set sql_safe_updates = 0;
+set sql_safe_updates = 0;  -- allows you to delete an entire table
 
 delete from products;
 insert into products (`name`, `category`, `price`) values
