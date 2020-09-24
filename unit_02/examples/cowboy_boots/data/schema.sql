@@ -15,7 +15,8 @@ create table products (
   `name` varchar(100) not null,
   `category` varchar(7) not null,
   `price` decimal(6,2) not null,
-  primary key (`id`)
+  primary key (`id`),
+  unique (`name`)
 );
 
 create index product_category
