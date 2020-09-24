@@ -1,0 +1,17 @@
+<main class="container">
+  <h1 class="text-center mt-5">Products</h1>
+  <div class="card-deck">
+    {{#each products}}
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title h2">
+          {{name}}
+          <span class="badge badge-primary">{{category}}</span>
+        </h2>
+        <div class="card-text h4">{{formatPrice price}}</div>
+        <div class="card-text">lorem ipsum</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</main>
