@@ -13,7 +13,7 @@ app.set('view engine', 'handlebars');
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-app.get('/', async (req, res, next) => {
+app.get('/', (req, res) => {
   res.render('home', { title: 'Home Page' });
 });
 
