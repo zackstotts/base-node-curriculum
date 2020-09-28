@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.get('/', async (req, res, next) => {
-  res.render('home', { title: 'Home Page', products });
+  res.render('home', { title: 'Home Page' });
 });
 
 // static files
