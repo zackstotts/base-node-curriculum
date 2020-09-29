@@ -10,11 +10,14 @@ const db = require('./db');
 
 // create and configure application
 const app = express();
-app.engine('handlebars', hbs({
-  helpers: {
-    formatPrice: (price) => '$' + price.toFixed(2)
-  }
-}));
+app.engine(
+  'handlebars',
+  hbs({
+    helpers: {
+      formatPrice: (price) => '$' + price.toFixed(2),
+    },
+  })
+);
 app.set('view engine', 'handlebars');
 app.use(express.urlencoded({ extended: false }));
 
@@ -31,7 +34,11 @@ app.get('/product/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     const product = await db.findProductById(id);
-    res.render('product-view', { title: 'Product View', product });
+    if (product) {
+      res.render('product-view', { title: 'Product View', product });
+    } else {
+      res.status(404).type('text/plain').send('Product Not Found');
+    }
   } catch (err) {
     next(err);
   }

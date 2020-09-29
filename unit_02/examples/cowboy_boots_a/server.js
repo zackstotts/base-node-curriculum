@@ -46,7 +46,7 @@ app.get('/product/:id', (req, res, next) => {
       const product = results[0];
       res.render('product-view', { title: product.name, product });
     } else {
-      res.status(404).send('Product Not Found');
+      res.status(404).type('text/plain').send('Product Not Found');
     }
   });
 });
