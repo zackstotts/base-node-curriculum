@@ -1,0 +1,32 @@
+<main class="container mt-5">
+  {{#with product}}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Products</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{name}}</li>
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-fluid" src="/images/product/boots.jpg">
+    </div>
+    <div class="col-md-8 p-3">
+      <h1>{{name}}</h1>
+      <div class="h4 mt-0 text-success">{{formatPrice price}}</div>
+      <div>
+        <span class="badge badge-primary">{{category}}</span>
+        <span class="badge badge-primary">Small</span>
+        <span class="badge badge-primary">Leather</span>
+      </div>
+      <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nostrum hic, ad, quibusdam ducimus officiis
+        molestias doloremque a praesentium cumque cum soluta distinctio, nihil ex neque quae sed quam placeat!
+      </div>
+      <div class="p-3 text-center">
+        <button class="btn btn-primary btn-lg">Buy Now!</button>
+      </div>
+    </div>
+
+  </div>
+  {{/with}}
+</main>
