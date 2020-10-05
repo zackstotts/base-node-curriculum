@@ -52,7 +52,8 @@ router.post('/', async (req, res, next) => {
     const result = await db.insertProduct(product);
     res.json(result);
   } catch (err) {
-    next(err);
+    //next(err);
+    res.status(500).json({ error: err });
   }
 });
 router.put('/:id', async (req, res, next) => {

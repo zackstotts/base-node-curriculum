@@ -1,5 +1,8 @@
 <main class="container mt-5">
-  <h1 class="text-center">Products</h1>
+  <div class="d-flex flex-row justify-content-between align-items-baseline mb-3">
+    <h1 class="text-center">Products</h1>
+    <a href="/product/add" class="btn btn-primary">Add Product</a>
+  </div>
   <div class="row">
     {{#each products}}
     <div class="col-lg-6">
@@ -15,6 +18,14 @@
             <span class="badge badge-primary">Leather</span>
           </div>
           <div class="card-text">lorem ipsum</div>
+          <div class="text-right">
+            <a href="/product/edit/{{id}}" class="btn btn-primary">Edit</a>
+            <button class="btn btn-danger delete-product-from-list" 
+                    data-id="{{id}}" 
+                    data-name="{{name}}">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

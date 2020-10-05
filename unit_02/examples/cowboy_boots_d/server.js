@@ -31,11 +31,26 @@ app.get('/', (req, res, next) => {
       next(err);
     });
 });
+app.get('/product/add', (req, res, next) => {
+  res.render('product-add', { title: 'Add Product' });
+});
+app.get('/product/edit/:id', (req, res, next) => {
+  const id = req.params.id;
+  db.findProductById(id)
+    .then((product) => {
+      if (product) {
+        res.render('product-edit', { title: 'Edit Product', product });
+      } else {
+        res.status(404).type('text/plain').send('product not found');
+      }
+    })
+    .catch((err) => next(err));
+});
 app.get('/product/:id', (req, res, next) => {
   const id = req.params.id;
 
   db.findProductById(id)
-    .then(product => {
+    .then((product) => {
       if (product) {
         res.render('product-view', { title: product.name, product });
       } else {
