@@ -29,13 +29,18 @@ $(() => {
       method: 'POST',
       url: '/api/product',
       dataType: 'json',
-      data: formData
-    }).done((res) => {
-      //alert(res[0]);
-      window.location = new URL(`/product/${res[0]}`, window.location);
-    }).fail((xhr, textStatus, err) => {
-      $('#add-product-form output').html(`${textStatus}\n${err}`);
-    });
+      data: formData,
+    })
+      .done((res) => {
+        if (res.error) {
+          $('#add-product-form output').html(res.error);
+        } else {
+          window.location = new URL(`/product/${res[0]}`, window.location);
+        }
+      })
+      .fail((xhr, textStatus, err) => {
+        $('#add-product-form output').html(`${textStatus}\n${err}`);
+      });
   });
   $('#edit-product-form').submit((evt) => {
     evt.preventDefault();
@@ -48,13 +53,18 @@ $(() => {
       method: 'PUT',
       url: `/api/product/${id}`,
       dataType: 'json',
-      data: formData
-    }).done((res) => {
-      //alert(res);
-      window.location = new URL(`/product/${id}`, window.location);
-    }).fail((xhr, textStatus, err) => {
-      $('#add-product-form output').html(`${textStatus}\n${err}`);
-    });
+      data: formData,
+    })
+      .done((res) => {
+        if (res.error) {
+          $('#edit-product-form output').html(res.error);
+        } else {
+          window.location = new URL(`/product/${id}`, window.location);
+        }
+      })
+      .fail((xhr, textStatus, err) => {
+        $('#edit-product-form output').html(`${textStatus}\n${err}`);
+      });
   });
   $('.delete-product-from-list').click((evt) => {
     const id = $(evt.target).data('id');
