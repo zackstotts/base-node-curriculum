@@ -19,5 +19,8 @@
     "knex": "^0.21.6",
     "lodash": "^4.17.20",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0"
   }
 }

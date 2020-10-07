@@ -16,7 +16,7 @@ $(() => {
   //     alert(`${textStatus}\n${err}`);
   //   });
   // });
-  $('#add-product-form').submit((evt) => {
+  $('#add-product-form').on('submit', (evt) => {
     evt.preventDefault();
 
     // const name = $('#name').val();
@@ -42,7 +42,7 @@ $(() => {
         $('#add-product-form output').html(`${textStatus}\n${err}`);
       });
   });
-  $('#edit-product-form').submit((evt) => {
+  $('#edit-product-form').on('submit', (evt) => {
     evt.preventDefault();
 
     const id = $('#id').val();
@@ -66,7 +66,7 @@ $(() => {
         $('#edit-product-form output').html(`${textStatus}\n${err}`);
       });
   });
-  $('.delete-product-from-list').click((evt) => {
+  $('.delete-product-from-list').on('click', (evt) => {
     const id = $(evt.target).data('id');
     const name = $(evt.target).data('name');
     const yes = confirm(`Are you sure that you want to delete "${name}"`);
@@ -77,7 +77,11 @@ $(() => {
         dataType: 'json',
       })
         .done((res) => {
-          window.location.reload();
+          if (res.error) {
+            alert(res.error);
+          } else {
+            window.location.reload();
+          }
         })
         .fail((xhr, textStatus, err) => {
           alert(`${textStatus}\n${err}`);
