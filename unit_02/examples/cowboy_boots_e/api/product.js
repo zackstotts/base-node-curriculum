@@ -9,12 +9,13 @@ router.use(express.json());
 
 const sendError = (err, res) => {
   if (err.isJoi) {
-    res.json({ error: err.details[0].message  });
+    res.json({ error: err.details[0].message });
   } else {
     res.json({ error: err.message });
   }
-}
+};
 
+// eslint-disable-next-line no-unused-vars
 router.get('/', async (req, res, next) => {
   debug('get all');
   try {
@@ -25,6 +26,8 @@ router.get('/', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.get('/id/:id', async (req, res, next) => {
   debug('find by id');
   try {
@@ -37,6 +40,8 @@ router.get('/id/:id', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.get('/name/:name', async (req, res, next) => {
   debug('find by name');
   try {
@@ -49,6 +54,8 @@ router.get('/name/:name', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.get('/category/:category', async (req, res, next) => {
   debug('find by category');
   try {
@@ -61,6 +68,8 @@ router.get('/category/:category', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.post('/', async (req, res, next) => {
   debug('insert product');
   try {
@@ -77,6 +86,8 @@ router.post('/', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.put('/:id', async (req, res, next) => {
   debug('update product');
   try {
@@ -96,6 +107,8 @@ router.put('/:id', async (req, res, next) => {
     sendError(err, res);
   }
 });
+
+// eslint-disable-next-line no-unused-vars
 router.delete('/:id', async (req, res, next) => {
   debug('delete product');
   try {

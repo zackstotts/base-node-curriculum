@@ -1,9 +1,10 @@
 const express = require('express');
-const debug = require('debug')('app:routes:product');
 const db = require('../db');
+//const debug = require('debug')('app:routes:product');
 
 const router = express.Router();
 
+// eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
   db.getAllProducts()
     .then((results) => {
@@ -13,9 +14,12 @@ router.get('/', (req, res, next) => {
       next(err);
     });
 });
+
+// eslint-disable-next-line no-unused-vars
 router.get('/add', (req, res, next) => {
   res.render('product-add', { title: 'Add Product' });
 });
+
 router.get('/edit/:id', (req, res, next) => {
   const id = req.params.id;
   db.findProductById(id)
@@ -28,6 +32,7 @@ router.get('/edit/:id', (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
 

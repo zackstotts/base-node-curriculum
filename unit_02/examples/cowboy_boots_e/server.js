@@ -6,7 +6,7 @@ const debug = require('debug')('app:server');
 const express = require('express');
 const hbs = require('express-handlebars');
 const config = require('config');
-const db = require('./db');
+//const db = require('./db');
 
 // create and configure application
 const app = express();
