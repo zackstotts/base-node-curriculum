@@ -1,0 +1,26 @@
+<main class="container mt-5">
+  <h1>Add Product</h1>
+  <form id="add-product-form" method="POST" action="/api/product">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" name="name" class="form-control" type="text">
+      <div id="name-error" class="text-danger"></div>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input id="category" name="category" class="form-control" type="text">
+      <div id="category-error" class="text-danger"></div>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" name="price" class="form-control" type="number" min="0" step="0.01">
+      <div id="price-error" class="text-danger"></div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    <div class="form-group">
+      <output type="text-danger"></output>
+    </div>
+  </form>
+</main>
