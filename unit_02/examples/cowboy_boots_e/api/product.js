@@ -8,8 +8,9 @@ router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
 const sendError = (err, res) => {
+  debug(err);
   if (err.isJoi) {
-    res.json({ error: err.details[0].message });
+    res.json({ error: err.details.map((x) => x.message).join('\n') });
   } else {
     res.json({ error: err.message });
   }
@@ -78,7 +79,7 @@ router.post('/', async (req, res, next) => {
       category: Joi.string().required().min(3).max(7).trim(),
       price: Joi.number().required().min(0).max(9999.99).precision(2),
     });
-    const product = await schema.validateAsync(req.body);
+    const product = await schema.validateAsync(req.body, { abortEarly: false });
     const result = await db.insertProduct(product);
     res.json(result);
   } catch (err) {
@@ -99,7 +100,7 @@ router.put('/:id', async (req, res, next) => {
     });
     let product = req.body;
     product.id = req.params.id;
-    product = await schema.validateAsync(product);
+    product = await schema.validateAsync(product, { abortEarly: false });
     const result = await db.updateProduct(product);
     res.json(result);
   } catch (err) {
