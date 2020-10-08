@@ -1,4 +1,11 @@
 $(() => {
+  $('form.needs-validation').on('submit', (evt) => {
+    if (!evt.target.checkValidity()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+    $(evt.target).addClass('was-validated');
+  });
   // $('#add-product').click((evt) => {
   //   const name = prompt('what is the name?');
   //   const category = prompt('what is category?');
@@ -18,6 +25,11 @@ $(() => {
   // });
   $('#add-product-form').on('submit', (evt) => {
     evt.preventDefault();
+
+    $(evt.target).addClass('was-validated');
+    if (!evt.target.checkValidity()) {
+      return;
+    }
 
     // const name = $('#name').val();
     // const category = $('#category').val();
@@ -44,6 +56,11 @@ $(() => {
   });
   $('#edit-product-form').on('submit', (evt) => {
     evt.preventDefault();
+
+    $(evt.target).addClass('was-validated');
+    if (!evt.target.checkValidity()) {
+      return;
+    }
 
     const id = $('#id').val();
     const formData = $(evt.target).serialize();
