@@ -22,6 +22,7 @@ app.set('view engine', 'handlebars');
 //app.use(express.urlencoded({ extended: false }));
 
 // routes
+app.get('/', (req, res) => res.redirect('/product')); // placeholder for home page
 app.use('/product', require('./routes/product'));
 app.use('/api/product', require('./api/product'));
 
