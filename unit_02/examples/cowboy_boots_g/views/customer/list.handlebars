@@ -1,0 +1,27 @@
+<main class="container mt-5">
+  <div class="mb-3">
+    <h1>
+      Customer List
+    </h1>
+  </div>
+  <div>
+    {{#each customers}}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2 class="card-title h2">
+            <a href="/customer/{{id}}">
+              {{family_name}}, {{given_name}}
+            </a>
+          </h2>
+          <div style="font-family: monospace;">
+            {{email}}
+          </div>
+          <div>
+            <span class="font-weight-bold">{{order_count}}</strong> 
+            <span class="text-muted">orders placed</span>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</main>

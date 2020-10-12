@@ -6,6 +6,7 @@ const debug = require('debug')('app:server');
 const express = require('express');
 const hbs = require('express-handlebars');
 const config = require('config');
+const moment = require('moment');
 //const db = require('./db');
 
 // create and configure application
@@ -14,7 +15,10 @@ app.engine(
   'handlebars',
   hbs({
     helpers: {
-      formatPrice: (price) => '$' + price.toFixed(2),
+      formatPrice: (price) => (price ? '$' + price.toFixed(2) : ''),
+      formatDate: (date) => (date ? moment(date).format('ll') : ''),
+      formatDatetime: (date) => (date ? moment(date).format('lll') : ''),
+      fromNow: (date) => (date ? moment(date).fromNow() : ''),
     },
   })
 );
@@ -24,6 +28,8 @@ app.set('view engine', 'handlebars');
 // routes
 app.get('/', (req, res) => res.redirect('/product')); // placeholder for home page
 app.use('/product', require('./routes/product'));
+app.use('/order', require('./routes/order'));
+app.use('/customer', require('./routes/customer'));
 app.use('/api/product', require('./api/product'));
 
 // static files

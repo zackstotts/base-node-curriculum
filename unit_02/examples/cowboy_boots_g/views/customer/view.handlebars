@@ -1,0 +1,25 @@
+<main class="container mt-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/customer">
+          Customers
+        </a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{title}}
+      </li>
+    </ol>
+  </nav>
+  <h1 class="mb-5">
+    {{title}}
+  </h1>
+  <h2>
+    Customer Orders
+  </h2>
+  {{#if orders}}
+    {{> order-list orders}}
+  {{else}}
+    <div class="h4 text-danger">Customer has not placed any orders!</div>
+  {{/if}}
+</main>

@@ -11,9 +11,7 @@ router.get('/', (req, res, next) => {
     .then((results) => {
       res.render('product/list', { title: 'Product List', products: results });
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch((err) => next(err));
 });
 
 // eslint-disable-next-line no-unused-vars

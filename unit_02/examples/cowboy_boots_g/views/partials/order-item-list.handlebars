@@ -1,0 +1,35 @@
+{{#each this}}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title h2">
+        <a href="/product/{{product_id}}">
+          {{#if product_name}}
+            {{product_name}}
+          {{else}}
+            Product {{product_id}}
+          {{/if}}
+        </a>
+      </h2>
+      <div class="h4">
+        {{quantity}}x
+      </div>
+      <div>
+        {{#if price_paid}}
+          <span class="h4">
+            {{formatPrice price_paid}}
+          </span>
+          <span style="text-decoration: line-through;">
+            {{formatPrice list_price}}
+          </span>
+        {{else}}
+          <span class="h4">
+            {{formatPrice list_price}}
+          </span>
+        {{/if}}
+        <span>
+          per item
+        </span>
+      </div>
+    </div>
+  </div>
+{{/each}}
