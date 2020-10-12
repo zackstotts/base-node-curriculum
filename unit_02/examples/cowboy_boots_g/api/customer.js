@@ -48,10 +48,50 @@ router.post('/', async (req, res, next) => {
       given_name: Joi.string().required().max(100).trim(),
       family_name: Joi.string().required().max(100).trim(),
       email: Joi.string().required().email().max(200).trim().lowercase(),
-      password: Joi.string().required()
+      password: Joi.string().required(),
     });
-    const customer = await schema.validateAsync(req.body, { abortEarly: false });
+    const customer = await schema.validateAsync(req.body, {
+      abortEarly: false,
+    });
     const result = await db.insertCustomer(customer);
+    res.json(result);
+  } catch (err) {
+    sendError(err, res);
+  }
+});
+
+// eslint-disable-next-line no-unused-vars
+router.put('/:id/profile', async (req, res, next) => {
+  debug('update profile');
+  try {
+    const schema = Joi.object({
+      id: Joi.number().required().min(1),
+      given_name: Joi.string().required().max(100).trim(),
+      family_name: Joi.string().required().max(100).trim(),
+      email: Joi.string().required().email().max(200).trim().lowercase(),
+    });
+    let customer = req.body;
+    customer.id = req.params.id;
+    customer = await schema.validateAsync(customer, { abortEarly: false });
+    const result = await db.updateCustomer(customer);
+    res.json(result);
+  } catch (err) {
+    sendError(err, res);
+  }
+});
+
+// eslint-disable-next-line no-unused-vars
+router.put('/:id/password', async (req, res, next) => {
+  debug('update password');
+  try {
+    const schema = Joi.object({
+      id: Joi.number().required().min(1),
+      password: Joi.string().required(),
+    });
+    let customer = req.body;
+    customer.id = req.params.id;
+    customer = await schema.validateAsync(customer, { abortEarly: false });
+    const result = await db.updateCustomer(customer);
     res.json(result);
   } catch (err) {
     sendError(err, res);
