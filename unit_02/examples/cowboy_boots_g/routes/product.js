@@ -28,7 +28,7 @@ router.get('/edit/:id', (req, res, next) => {
       if (product) {
         res.render('product/edit', { title: 'Edit Product', product });
       } else {
-        res.status(404).type('text/plain').send('product not found');
+        res.status(404).render('error/basic', { title: 'Product Not Found' });
       }
     })
     .catch((err) => next(err));
@@ -42,7 +42,7 @@ router.get('/:id', (req, res, next) => {
       if (product) {
         res.render('product/view', { title: product.name, product });
       } else {
-        res.status(404).type('text/plain').send('product not found');
+        res.status(404).render('error/basic', { title: 'Product Not Found' });
       }
     })
     .catch((err) => next(err));

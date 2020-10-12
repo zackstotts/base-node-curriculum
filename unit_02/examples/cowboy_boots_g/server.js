@@ -30,8 +30,22 @@ app.use('/api/product', require('./api/product'));
 app.use('/', express.static('public'));
 
 // 404 error page
-app.use((request, response) => {
-  response.status(404).type('text/plain').send('Page Not Found');
+app.use((req, res) => {
+  res.status(404).render('error/basic', {
+    title: 'Page Not Found',
+    message: 'The page you requested could not be found.',
+  });
+});
+
+// 500 error page
+app.use((err, req, res) => {
+  debug(err.stack);
+  const message = err.isJoi
+    ? err.details.map((x) => x.message).join('\n')
+    : err.message;
+  res
+    .status(500)
+    .render('error/basic', { title: 'Internal Server Error', message });
 });
 
 // start app
