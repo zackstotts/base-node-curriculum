@@ -37,21 +37,29 @@ app.use('/', express.static('public'));
 
 // 404 error page
 app.use((req, res) => {
-  res.status(404).render('error/basic', {
-    title: 'Page Not Found',
-    message: 'The page you requested could not be found.',
-  });
+  if (req.xhr || !req.accepts('html')) {
+    res.status(404).json({ error: 'Page Not Found' });
+  } else {
+    res.status(404).render('error/basic', {
+      title: 'Page Not Found',
+      message: 'The page you requested could not be found.',
+    });
+  }
 });
 
-// 500 error page
-app.use((err, req, res) => {
+// 500 error 
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   debug(err.stack);
   const message = err.isJoi
     ? err.details.map((x) => x.message).join('\n')
     : err.message;
-  res
-    .status(500)
-    .render('error/basic', { title: 'Internal Server Error', message });
+
+  if (req.xhr || !req.accepts('html')) {
+    res.status(500).json({ error: message });
+  } else {
+    res.status(500).render('error/basic', { title: 'Error', message });
+  }
 });
 
 // start app
