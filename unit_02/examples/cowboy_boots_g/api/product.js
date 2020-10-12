@@ -23,7 +23,6 @@ router.get('/', async (req, res, next) => {
     const products = await db.getAllProducts();
     res.json(products);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
@@ -32,12 +31,11 @@ router.get('/', async (req, res, next) => {
 router.get('/id/:id', async (req, res, next) => {
   debug('find by id');
   try {
-    const schema = Joi.number().min(1).required();
+    const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
     const product = await db.findProductById(id);
     res.json(product);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
@@ -46,12 +44,11 @@ router.get('/id/:id', async (req, res, next) => {
 router.get('/name/:name', async (req, res, next) => {
   debug('find by name');
   try {
-    const schema = Joi.string().required().trim();
+    const schema = Joi.string().required().trim().label('name');
     const name = await schema.validateAsync(req.params.name);
     const products = await db.findProductByName(name);
     res.json(products);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
@@ -60,19 +57,18 @@ router.get('/name/:name', async (req, res, next) => {
 router.get('/category/:category', async (req, res, next) => {
   debug('find by category');
   try {
-    const schema = Joi.string().required().trim();
+    const schema = Joi.string().required().trim().label('category');
     const category = await schema.validateAsync(req.params.category);
     const products = await db.findProductByCategory(category);
     res.json(products);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
 
 // eslint-disable-next-line no-unused-vars
 router.post('/', async (req, res, next) => {
-  debug('insert product');
+  debug('insert');
   try {
     const schema = Joi.object({
       name: Joi.string().required().min(3).max(100).trim(),
@@ -83,14 +79,13 @@ router.post('/', async (req, res, next) => {
     const result = await db.insertProduct(product);
     res.json(result);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
 
 // eslint-disable-next-line no-unused-vars
 router.put('/:id', async (req, res, next) => {
-  debug('update product');
+  debug('update');
   try {
     const schema = Joi.object({
       id: Joi.number().required().min(1),
@@ -104,21 +99,19 @@ router.put('/:id', async (req, res, next) => {
     const result = await db.updateProduct(product);
     res.json(result);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });
 
 // eslint-disable-next-line no-unused-vars
 router.delete('/:id', async (req, res, next) => {
-  debug('delete product');
+  debug('delete');
   try {
     const schema = Joi.number().min(1).required();
     const id = await schema.validateAsync(req.params.id);
     const result = await db.deleteProduct(id);
     res.json(result);
   } catch (err) {
-    //next(err);
     sendError(err, res);
   }
 });

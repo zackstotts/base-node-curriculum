@@ -1,6 +1,6 @@
 const db = require('../db');
 const express = require('express');
-const debug = require('debug')('app:api:product');
+const debug = require('debug')('app:api:order');
 const Joi = require('joi');
 
 const router = express.Router();

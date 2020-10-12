@@ -42,7 +42,7 @@ router.get('/:id', async (req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 router.post('/', async (req, res, next) => {
-  debug('insert');
+  debug('register');
   try {
     const schema = Joi.object({
       given_name: Joi.string().required().max(100).trim(),
