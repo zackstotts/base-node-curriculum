@@ -41,6 +41,7 @@ create table customers (
   `family_name` varchar(100) not null,
   `email` varchar(200) not null,
   `password` text not null,
+  `register_date` datetime not null default(now()),
   primary key (`id`),
   unique (`email`)
 );

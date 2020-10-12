@@ -11,9 +11,15 @@
       </li>
     </ol>
   </nav>
-  <h1 class="mb-5">
+  <h1>
     {{title}}
   </h1>
+  <div class="mb-2 text-monospace">
+    {{customer.email}}
+  </div>
+  <div class="mb-5">
+    Registered {{fromNow customer.register_date}}
+  </div>
   <h2>
     Customer Orders
   </h2>

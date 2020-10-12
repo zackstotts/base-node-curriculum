@@ -86,7 +86,8 @@ const getAllCustomersWithOrderCount = () => {
       'customers.id',
       'customers.given_name',
       'customers.family_name',
-      'customers.email'
+      'customers.email',
+      'customers.register_date'
     )
     .count('orders.id as order_count')
     .orderBy('family_name')
