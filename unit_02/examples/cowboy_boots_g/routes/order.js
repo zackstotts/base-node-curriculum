@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await db.getAllOrders();
+    const orders = await db.getAllOrdersWithItemCount();
     res.render('order/list', { title: 'Order List', orders });
   } catch (err) {
     next(err);

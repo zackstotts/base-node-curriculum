@@ -1,0 +1,18 @@
+{{#each this}}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title h2">
+        <a href="/customer/{{id}}">
+          {{family_name}}, {{given_name}}
+        </a>
+      </h2>
+      <div class="mb-3 text-monospace">
+        {{email}}
+      </div>
+      <div class="mb-3">
+        <span class="font-weight-bold">{{order_count}}</strong> 
+        <span class="text-muted">orders placed</span>
+      </div>
+    </div>
+  </div>
+{{/each}}

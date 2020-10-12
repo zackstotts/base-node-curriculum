@@ -34,6 +34,17 @@
           </span>
         {{/if}}
       </div>
+      <div class="h4 mt-3">
+        {{#if item_count}}
+          <span>
+            {{item_count}} items in order
+          </span>
+        {{else}}
+          <span class="text-danger">
+            Order is empty!
+          </span>
+        {{/if}}
+      </div>
     </div>
   </div>
 {{/each}}

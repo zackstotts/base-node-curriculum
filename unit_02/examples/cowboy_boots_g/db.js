@@ -66,9 +66,9 @@ const getAllCustomers = () => {
 const getAllCustomersWithOrderCount = () => {
   return knex('customers')
     .leftJoin('orders', 'customers.id', 'orders.customer_id')
+    .groupBy('customers.id')
     .select('customers.*')
     .count('orders.id as order_count')
-    .groupBy('customers.id')
     .orderBy('family_name')
     .orderBy('given_name');
 };
@@ -86,10 +86,22 @@ const getAllOrders = () => {
   return knex('orders').select('*').orderBy('id');
 };
 
+const getAllOrdersWithItemCount = () => {
+  return knex('orders')
+    .leftJoin('order_items', 'orders.id', 'order_items.order_id')
+    .groupBy('orders.id')
+    .select('orders.*')
+    .count('order_items.product_id as item_count')
+    .orderBy('id');
+};
+
 const getCustomerOrders = (customerId) => {
   return knex('orders')
-    .select('*')
     .where('customer_id', customerId)
+    .leftJoin('order_items', 'orders.id', 'order_items.order_id')
+    .groupBy('orders.id')
+    .select('orders.*')
+    .count('order_items.product_id as item_count')
     .orderBy('id');
 };
 
@@ -125,6 +137,7 @@ module.exports = {
   getAllCustomersWithOrderCount,
   getCustomerById,
   getAllOrders,
+  getAllOrdersWithItemCount,
   getCustomerOrders,
   getOrderById,
   getOrderItems,
