@@ -29,6 +29,11 @@ app.use('/api/product', require('./api/product'));
 // static files
 app.use('/', express.static('public'));
 
+// 404 error page
+app.use((request, response) => {
+  response.status(404).type('text/plain').send('Page Not Found');
+});
+
 // start app
 const hostname = config.get('http.hostname');
 const port = config.get('http.port');
