@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const moment = require('moment');
 
 // get connection config
 const config = require('config');
@@ -9,6 +10,15 @@ const knex = require('knex')({
   client: 'mysql',
   connection: databaseConfig,
 });
+
+// utilities
+
+// eslint-disable-next-line no-unused-vars
+const formatDatetime = (date) =>
+  date ? moment(date).format('YYYY-MM-DD HH:mm:ss') : date;
+
+// eslint-disable-next-line no-unused-vars
+const formatDate = (date) => (date ? moment(date).format('YYYY-MM-DD') : date);
 
 // products
 
@@ -125,6 +135,28 @@ const getOrderItems = (orderId) => {
     .where('order_id', orderId);
 };
 
+const insertOrder = (order) => {
+  return knex('orders').insert({
+    customer_id: order.customer_id,
+    payment_date: formatDatetime(order.payment_date),
+    ship_date: formatDatetime(order.ship_date),
+  });
+};
+
+const updateOrder = (order) => {
+  return knex('orders')
+    .where('id', order.id)
+    .update({
+      customer_id: order.customer_id,
+      payment_date: formatDatetime(order.payment_date),
+      ship_date: formatDatetime(order.ship_date),
+    });
+};
+
+const deleteOrder = (orderId) => {
+  return knex('orders').where('id', orderId).delete();
+};
+
 module.exports = {
   getAllProducts,
   findProductById,
@@ -141,4 +173,7 @@ module.exports = {
   getCustomerOrders,
   getOrderById,
   getOrderItems,
+  insertOrder,
+  updateOrder,
+  deleteOrder,
 };

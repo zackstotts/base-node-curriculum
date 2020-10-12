@@ -36,6 +36,7 @@ app.use('/product', require('./routes/product'));
 app.use('/order', require('./routes/order'));
 app.use('/customer', require('./routes/customer'));
 app.use('/api/product', require('./api/product'));
+app.use('/api/order', require('./api/order'));
 
 // static files
 app.use('/', express.static('public'));
