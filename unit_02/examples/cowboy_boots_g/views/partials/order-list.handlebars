@@ -1,38 +1,16 @@
 {{#each this}}
   <div class="card mb-3">
     <div class="card-body">
-      <h2 class="card-title h2">
+      <div class="card-title">
         <a href="/order/{{id}}">
-          {{id}}
+          Order #{{id}}
         </a>
-      </h2>
-      <div>
-        {{#if payment_date}}
-          <span class="font-weight-bold">
-            Purchased {{fromNow payment_date}}
-          </span>
-          <span class="text-muted">
-            [{{formatDatetime payment_date}}]
-          </span>
-        {{else}}
-          <span class="text-danger">
-            Order has not been paid for!
-          </span>
-        {{/if}}
       </div>
       <div>
-        {{#if ship_date}}
-          <span class="font-weight-bold">
-            Shipped {{fromNow ship_date}}
-          </span>
-          <span class="text-muted">
-            [{{formatDatetime ship_date}}]
-          </span>
-        {{else}}
-          <span class="text-danger">
-            Order has not been shipped!
-          </span>
-        {{/if}}
+        {{> order-payment-date this}}
+      </div>
+      <div>
+        {{> order-ship-date this}}
       </div>
       <div class="h4 mt-3">
         {{#if item_count}}

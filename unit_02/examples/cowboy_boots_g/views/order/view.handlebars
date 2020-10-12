@@ -7,18 +7,32 @@
         </a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        {{title}}
+        Order #{{order.id}}
       </li>
     </ol>
   </nav>
   <div>
-  <h1 class="mb-5">
-    {{title}}
+  <h1>
+    Order #{{order.id}}
   </h1>
-  {{#if items}}
-    {{> order-item-list items}}
-    <div class="h2">Total Cost: {{formatPrice totalCost}}</div>
-  {{else}}
-    <div class="h4 text-danger">Order is empty!</div>
-  {{/if}}
+  <div class="h4 mb-3">
+    Ordered by 
+    <a href="/customer/{{customer.id}}">
+      {{customer.given_name}} {{customer.family_name}}
+    </a>
+  </div>
+  <div>
+    {{> order-payment-date order}}
+  </div>
+  <div>
+    {{> order-ship-date order}}
+  </div>
+  <div class="mt-5">
+    {{#if items}}
+      {{> order-item-list items}}
+      <div class="h2">Total Cost: {{formatPrice totalCost}}</div>
+    {{else}}
+      <div class="h4 text-danger">Order is empty!</div>
+    {{/if}}
+  </div>
 </main>

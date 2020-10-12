@@ -3,3 +3,7 @@
   background: none;
   border: none;
 }
+.card-title {
+  font-size: 2em;
+  text-transform: uppercase;
+}
