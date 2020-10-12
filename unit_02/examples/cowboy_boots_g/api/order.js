@@ -55,7 +55,7 @@ router.post('/', async (req, res, next) => {
       payment_date: data.paid ? Date.now() : null,
       ship_date: data.shipped ? Date.now() : null,
     });
-    res.json(result);
+    res.json({ id: result[0], message: 'Order Created.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -67,8 +67,8 @@ router.put('/:id/paid', async (req, res, next) => {
   try {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
-    const result = await db.updateOrder({ id: id, payment_date: Date.now() });
-    res.json(result);
+    await db.updateOrder({ id: id, payment_date: Date.now() });
+    res.json({ message: 'Order Paid.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -80,8 +80,8 @@ router.put('/:id/shipped', async (req, res, next) => {
   try {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
-    const result = await db.updateOrder({ id: id, ship_date: Date.now() });
-    res.json(result);
+    await db.updateOrder({ id: id, ship_date: Date.now() });
+    res.json({ message: 'Order Shipped.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -93,8 +93,8 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
-    const result = await db.deleteOrder(id);
-    res.json(result);
+    await db.deleteOrder(id);
+    res.json({ message: 'Order Deleted.' });
   } catch (err) {
     sendError(err, res);
   }

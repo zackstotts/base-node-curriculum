@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
       abortEarly: false,
     });
     const result = await db.insertCustomer(customer);
-    res.json(result);
+    res.json({ id: result[0], message: 'Account Registered.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -73,8 +73,8 @@ router.put('/:id/profile', async (req, res, next) => {
     let customer = req.body;
     customer.id = req.params.id;
     customer = await schema.validateAsync(customer, { abortEarly: false });
-    const result = await db.updateCustomer(customer);
-    res.json(result);
+    await db.updateCustomer(customer);
+    res.json({ message: 'Account Updated.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -91,8 +91,8 @@ router.put('/:id/password', async (req, res, next) => {
     let customer = req.body;
     customer.id = req.params.id;
     customer = await schema.validateAsync(customer, { abortEarly: false });
-    const result = await db.updateCustomer(customer);
-    res.json(result);
+    await db.updateCustomer(customer);
+    res.json({ message: 'Password Changed.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -104,8 +104,8 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
-    const result = await db.deleteCustomer(id);
-    res.json(result);
+    await db.deleteCustomer(id);
+    res.json({ message: 'Account Deleted.' });
   } catch (err) {
     sendError(err, res);
   }

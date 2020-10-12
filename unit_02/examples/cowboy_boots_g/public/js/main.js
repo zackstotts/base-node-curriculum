@@ -47,7 +47,7 @@ $(() => {
         if (res.error) {
           $('#add-product-form output').html(res.error);
         } else {
-          window.location = new URL(`/product/${res[0]}`, window.location);
+          window.location = new URL(`/product/${res.id}`, window.location);
         }
       })
       .fail((xhr, textStatus, err) => {

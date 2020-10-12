@@ -77,7 +77,7 @@ router.post('/', async (req, res, next) => {
     });
     const product = await schema.validateAsync(req.body, { abortEarly: false });
     const result = await db.insertProduct(product);
-    res.json(result);
+    res.json({ id: result[0], message: 'Product Added.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -96,8 +96,8 @@ router.put('/:id', async (req, res, next) => {
     let product = req.body;
     product.id = req.params.id;
     product = await schema.validateAsync(product, { abortEarly: false });
-    const result = await db.updateProduct(product);
-    res.json(result);
+    await db.updateProduct(product);
+    res.json({ message: 'Product Updated.' });
   } catch (err) {
     sendError(err, res);
   }
@@ -109,8 +109,8 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const schema = Joi.number().min(1).required();
     const id = await schema.validateAsync(req.params.id);
-    const result = await db.deleteProduct(id);
-    res.json(result);
+    await db.deleteProduct(id);
+    res.json({ message: 'Product Deleted.' });
   } catch (err) {
     sendError(err, res);
   }
