@@ -68,7 +68,12 @@ const deleteProduct = (productId) => {
 
 const getAllCustomers = () => {
   return knex('customers')
-    .select('*')
+    .select(
+      'customers.id',
+      'customers.given_name',
+      'customers.family_name',
+      'customers.email'
+    )
     .orderBy('family_name')
     .orderBy('given_name');
 };
@@ -77,7 +82,12 @@ const getAllCustomersWithOrderCount = () => {
   return knex('customers')
     .leftJoin('orders', 'customers.id', 'orders.customer_id')
     .groupBy('customers.id')
-    .select('customers.*')
+    .select(
+      'customers.id',
+      'customers.given_name',
+      'customers.family_name',
+      'customers.email'
+    )
     .count('orders.id as order_count')
     .orderBy('family_name')
     .orderBy('given_name');
@@ -88,6 +98,28 @@ const getCustomerById = (customerId) => {
     .select('*')
     .where('id', customerId)
     .then((results) => _.first(results));
+};
+
+const insertCustomer = (customer) => {
+  return knex('customers').insert({
+    given_name: customer.given_name,
+    family_name: customer.family_name,
+    email: customer.email,
+    password: customer.password,
+  });
+};
+
+const updateCustomer = (customer) => {
+  return knex('customers').where('id', customer.id).update({
+    given_name: customer.given_name,
+    family_name: customer.family_name,
+    email: customer.email,
+    password: customer.password,
+  });
+};
+
+const deleteCustomer = (customerId) => {
+  return knex('customers').where('id', customerId).delete();
 };
 
 // orders
@@ -168,6 +200,9 @@ module.exports = {
   getAllCustomers,
   getAllCustomersWithOrderCount,
   getCustomerById,
+  insertCustomer,
+  updateCustomer,
+  deleteCustomer,
   getAllOrders,
   getAllOrdersWithItemCount,
   getCustomerOrders,
