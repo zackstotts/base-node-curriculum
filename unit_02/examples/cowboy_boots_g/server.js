@@ -7,6 +7,9 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const config = require('config');
 const moment = require('moment');
+const morgan = require('morgan');
+const favicon = require('serve-favicon');
+const path = require('path');
 //const db = require('./db');
 
 // create and configure application
@@ -24,6 +27,12 @@ app.engine(
 );
 app.set('view engine', 'handlebars');
 //app.use(express.urlencoded({ extended: false }));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(
+  morgan('tiny', {
+    skip: (req, res) => res.statusCode == 304,
+  })
+);
 
 // routes
 app.get('/', (req, res) => res.redirect('/product')); // placeholder for home page
@@ -47,7 +56,7 @@ app.use((req, res) => {
   }
 });
 
-// 500 error 
+// 500 error
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   debug(err.stack);
