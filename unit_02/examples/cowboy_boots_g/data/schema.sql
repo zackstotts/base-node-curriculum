@@ -58,7 +58,7 @@ create table orders (
   `payment_date` datetime null,
   `ship_date` datetime null,
   primary key (`id`),
-  foreign key (`customer_id`) references customers (`id`)
+  foreign key (`customer_id`) references customers (`id`) on delete cascade
 );
 
 create index order_customer_id
@@ -77,8 +77,8 @@ create table order_items (
   `quantity` smallint not null default 1,
   `price` decimal(6,2) null,
   primary key (`order_id`, `product_id`),
-  foreign key (`order_id`) references orders (`id`),
-  foreign key (`product_id`) references products (`id`)
+  foreign key (`order_id`) references orders (`id`) on delete cascade,
+  foreign key (`product_id`) references products (`id`) on delete cascade
 );
 
 create index order_item_order_id
