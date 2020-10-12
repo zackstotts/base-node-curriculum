@@ -28,11 +28,7 @@ app.engine(
 app.set('view engine', 'handlebars');
 //app.use(express.urlencoded({ extended: false }));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(
-  morgan('tiny', {
-    skip: (req, res) => res.statusCode == 304,
-  })
-);
+app.use(morgan('tiny'));
 
 // routes
 app.get('/', (req, res) => res.redirect('/product')); // placeholder for home page
