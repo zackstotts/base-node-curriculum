@@ -28,7 +28,7 @@ const getProductCount = () => {
 };
 
 const getAllProducts = () => {
-  return knex('products').select('*').orderBy('name');
+  return knex('products').select('*');
 };
 
 const findProductById = (id) => {
