@@ -6,6 +6,14 @@
           Order #{{id}}
         </a>
       </div>
+      {{#if customer_given_name}}
+        <div class="h5 mb-3">
+          Ordered by 
+          <a href="/customer/{{customer_id}}">
+            {{customer_given_name}} {{customer_family_name}}
+          </a>
+        </div>
+      {{/if}}
       <div>
         {{> order-payment-date this}}
       </div>
