@@ -23,6 +23,10 @@ const formatDate = (date) => (date ? moment(date).format('YYYY-MM-DD') : date);
 
 // products
 
+const getProductCount = () => {
+  return knex('products').count('* as count');
+}
+
 const getAllProducts = () => {
   return knex('products').select('*').orderBy('name');
 };
@@ -73,7 +77,8 @@ const getAllCustomers = () => {
       'customers.id',
       'customers.given_name',
       'customers.family_name',
-      'customers.email'
+      'customers.email',
+      'customers.register_date'
     )
     .orderBy('family_name')
     .orderBy('given_name');
@@ -228,6 +233,8 @@ const addOrderItem = async (data) => {
 };
 
 module.exports = {
+  knex,
+  getProductCount,
   getAllProducts,
   findProductById,
   findProductByName,
