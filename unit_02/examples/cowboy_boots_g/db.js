@@ -73,9 +73,7 @@ const getAllCustomers = () => {
       'customers.family_name',
       'customers.email',
       'customers.register_date'
-    )
-    .orderBy('family_name')
-    .orderBy('given_name');
+    );
 };
 
 const getAllCustomersWithOrderCount = () => {
@@ -89,9 +87,7 @@ const getAllCustomersWithOrderCount = () => {
       'customers.email',
       'customers.register_date'
     )
-    .count('orders.id as order_count')
-    .orderBy('family_name')
-    .orderBy('given_name');
+    .count('orders.id as order_count');
 };
 
 const getCustomerById = (customerId) => {
