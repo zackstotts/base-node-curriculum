@@ -8,24 +8,29 @@ const router = express.Router();
 // eslint-disable-next-line no-unused-vars
 router.get('/', async (req, res, next) => {
   try {
-    const search = req.query.search;
     const category = req.query.category;
+    const search = req.query.search;
 
     let query = db.getAllProducts();
+    if (category) {
+      query = query.where('category', category);
+    }
     if (search) {
       query = query.whereRaw(
         'MATCH (name,category) AGAINST (? IN NATURAL LANGUAGE MODE)',
         [search]
       );
     } else {
-      query = query.orderBy('name')
-    }
-    if (category) {
-      query = query.where('category', category);
+      query = query.orderBy('name');
     }
     const products = await query;
 
-    res.render('product/list', { title: 'Product List', products });
+    res.render('product/list', {
+      title: 'Product List',
+      products,
+      category,
+      search,
+    });
   } catch (err) {
     next(err);
   }

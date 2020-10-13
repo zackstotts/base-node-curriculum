@@ -7,3 +7,13 @@
   font-size: 2em;
   text-transform: uppercase;
 }
+fieldset {
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+legend {
+  width: auto;
+  padding: 0 0.5em;
+  margin: 0 0.5em;
+}
