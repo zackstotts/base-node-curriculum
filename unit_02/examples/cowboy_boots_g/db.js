@@ -66,14 +66,13 @@ const deleteProduct = (productId) => {
 // customers
 
 const getAllCustomers = () => {
-  return knex('customers')
-    .select(
-      'customers.id',
-      'customers.given_name',
-      'customers.family_name',
-      'customers.email',
-      'customers.register_date'
-    );
+  return knex('customers').select(
+    'customers.id',
+    'customers.given_name',
+    'customers.family_name',
+    'customers.email',
+    'customers.register_date'
+  );
 };
 
 const getAllCustomersWithOrderCount = () => {
@@ -119,7 +118,7 @@ const deleteCustomer = (customerId) => {
 // orders
 
 const getAllOrders = () => {
-  return knex('orders').select('*').orderBy('id');
+  return knex('orders').select('*');
 };
 
 const getAllOrdersWithItemCount = () => {
@@ -127,8 +126,7 @@ const getAllOrdersWithItemCount = () => {
     .leftJoin('order_items', 'orders.id', 'order_items.order_id')
     .groupBy('orders.id')
     .select('orders.*')
-    .count('order_items.product_id as item_count')
-    .orderBy('id');
+    .count('order_items.product_id as item_count');
 };
 
 const getCustomerOrders = (customerId) => {
@@ -137,8 +135,7 @@ const getCustomerOrders = (customerId) => {
     .leftJoin('order_items', 'orders.id', 'order_items.order_id')
     .groupBy('orders.id')
     .select('orders.*')
-    .count('order_items.product_id as item_count')
-    .orderBy('id');
+    .count('order_items.product_id as item_count');
 };
 
 const getOrderById = (orderId) => {

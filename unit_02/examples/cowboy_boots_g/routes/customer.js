@@ -42,7 +42,9 @@ router.get('/:id', async (req, res, next) => {
     const customerId = req.params.id;
     const customer = await db.getCustomerById(customerId);
     if (customer) {
-      const orders = await db.getCustomerOrders(customerId);
+      const orders = await db
+        .getCustomerOrders(customerId)
+        .orderBy('id', 'desc');
       const title = `${customer.given_name} ${customer.family_name}`;
       res.render('customer/view', { title, customer, orders });
     } else {
