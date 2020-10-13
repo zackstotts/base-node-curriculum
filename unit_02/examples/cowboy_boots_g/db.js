@@ -1,4 +1,4 @@
-const _ = require('lodash');
+//const _ = require('lodash');
 const moment = require('moment');
 const debug = require('debug')('app:db');
 
@@ -25,24 +25,18 @@ const formatDate = (date) => (date ? moment(date).format('YYYY-MM-DD') : date);
 
 const getProductCount = () => {
   return knex('products').count('* as count');
-}
+};
 
 const getAllProducts = () => {
   return knex('products').select('*').orderBy('name');
 };
 
 const findProductById = (id) => {
-  return knex('products')
-    .select('*')
-    .where('id', id)
-    .then((results) => _.first(results));
+  return knex('products').where('id', id).select('*').first();
 };
 
 const findProductByName = (name) => {
-  return knex('products')
-    .select('*')
-    .where('name', name)
-    .then((results) => _.first(results));
+  return knex('products').where('name', name).select('*').first();
 };
 
 const findProductByCategory = (category) => {
@@ -101,10 +95,7 @@ const getAllCustomersWithOrderCount = () => {
 };
 
 const getCustomerById = (customerId) => {
-  return knex('customers')
-    .select('*')
-    .where('id', customerId)
-    .then((results) => _.first(results));
+  return knex('customers').where('id', customerId).select('*').first();
 };
 
 const insertCustomer = (customer) => {
@@ -155,10 +146,7 @@ const getCustomerOrders = (customerId) => {
 };
 
 const getOrderById = (orderId) => {
-  return knex('orders')
-    .select('*')
-    .where('id', orderId)
-    .then((results) => _.first(results));
+  return knex('orders').where('id', orderId).select('*').first();
 };
 
 const getOrderItems = (orderId) => {
@@ -201,10 +189,11 @@ const addOrderItem = async (data) => {
     .where('order_id', data.order_id)
     .where('product_id', data.product_id)
     .select('*')
-    .then((results) => _.first(results));
+    .first();
   if (item) {
     //debug('item found ' + JSON.stringify(item));
-    const newQuantity = (parseInt(item.quantity) || 0) + (parseInt(data.quantity) || 0);
+    const newQuantity =
+      (parseInt(item.quantity) || 0) + (parseInt(data.quantity) || 0);
     //debug(newQuantity);
     const result = await knex('order_items')
       .where('order_id', data.order_id)
@@ -217,7 +206,7 @@ const addOrderItem = async (data) => {
     const product = await knex('products')
       .where('id', data.product_id)
       .select('price')
-      .then((results) => _.first(results));
+      .first();
     //debug('product found ' + JSON.stringify(product));
     if (product) {
       const result = await knex('order_items').insert({
