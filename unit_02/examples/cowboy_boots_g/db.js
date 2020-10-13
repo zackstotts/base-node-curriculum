@@ -124,8 +124,14 @@ const getAllOrders = () => {
 const getAllOrdersWithItemCount = () => {
   return knex('orders')
     .leftJoin('order_items', 'orders.id', 'order_items.order_id')
+    .leftJoin('customers', 'orders.customer_id', 'customers.id')
     .groupBy('orders.id')
-    .select('orders.*')
+    .select(
+      'orders.*',
+      'customers.given_name as customer_given_name',
+      'customers.family_name as customer_family_name',
+      'customers.email as customer_email'
+    )
     .count('order_items.product_id as item_count');
 };
 

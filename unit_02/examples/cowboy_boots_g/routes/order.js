@@ -17,7 +17,14 @@ router.get('/', async (req, res, next) => {
       const cutoff = moment().add(recent, 'days').toDate();
       query = query.where('payment_date', '>=', cutoff);
     }
-    query = query.orderBy('id', 'desc');
+    if (search) {
+      query = query.whereRaw(
+        'MATCH (customers.given_name,customers.family_name,customers.email) AGAINST (? IN NATURAL LANGUAGE MODE)',
+        [search]
+      );
+    } else {
+      query = query.orderBy('id', 'desc');
+    }
     const orders = await query;
 
     res.render('order/list', { title: 'Order List', orders, recent, search });
