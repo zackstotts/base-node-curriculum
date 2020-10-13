@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const moment = require('moment');
+const debug = require('debug')('app:db');
 
 // get connection config
 const config = require('config');
@@ -190,6 +191,42 @@ const deleteOrder = (orderId) => {
   return knex('orders').where('id', orderId).delete();
 };
 
+const addOrderItem = async (data) => {
+  const item = await knex('order_items')
+    .where('order_id', data.order_id)
+    .where('product_id', data.product_id)
+    .select('*')
+    .then((results) => _.first(results));
+  if (item) {
+    //debug('item found ' + JSON.stringify(item));
+    const newQuantity = (parseInt(item.quantity) || 0) + (parseInt(data.quantity) || 0);
+    //debug(newQuantity);
+    const result = await knex('order_items')
+      .where('order_id', data.order_id)
+      .where('product_id', data.product_id)
+      .update({
+        quantity: newQuantity,
+      });
+    debug('updated ' + result);
+  } else {
+    const product = await knex('products')
+      .where('id', data.product_id)
+      .select('price')
+      .then((results) => _.first(results));
+    //debug('product found ' + JSON.stringify(product));
+    if (product) {
+      const result = await knex('order_items').insert({
+        order_id: data.order_id,
+        product_id: data.product_id,
+        quantity: data.quantity,
+        price: product.price,
+      });
+      debug('inserted ' + result);
+    }
+  }
+  return item;
+};
+
 module.exports = {
   getAllProducts,
   findProductById,
@@ -212,4 +249,5 @@ module.exports = {
   insertOrder,
   updateOrder,
   deleteOrder,
+  addOrderItem,
 };

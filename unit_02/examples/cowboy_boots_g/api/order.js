@@ -34,6 +34,9 @@ router.get('/:id', async (req, res, next) => {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
     const order = await db.getOrderById(id);
+    if (order) {
+      order.items = await db.getOrderItems(id);
+    }
     res.json(order);
   } catch (err) {
     sendError(err, res);
@@ -62,7 +65,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // eslint-disable-next-line no-unused-vars
-router.put('/:id/paid', async (req, res, next) => {
+router.post('/:id/paid', async (req, res, next) => {
   debug('order paid');
   try {
     const schema = Joi.number().min(1).required().label('id');
@@ -75,13 +78,49 @@ router.put('/:id/paid', async (req, res, next) => {
 });
 
 // eslint-disable-next-line no-unused-vars
-router.put('/:id/shipped', async (req, res, next) => {
+router.post('/:id/shipped', async (req, res, next) => {
   debug('order shipped');
   try {
     const schema = Joi.number().min(1).required().label('id');
     const id = await schema.validateAsync(req.params.id);
     await db.updateOrder({ id: id, ship_date: Date.now() });
     res.json({ message: 'Order Shipped.' });
+  } catch (err) {
+    sendError(err, res);
+  }
+});
+
+// eslint-disable-next-line no-unused-vars
+router.get('/:id/items', async (req, res, next) => {
+  debug('get order items');
+  try {
+    const schema = Joi.number().min(1).required().label('id');
+    const id = await schema.validateAsync(req.params.id);
+    const items = await db.getOrderItems(id);
+    res.json(items);
+  } catch (err) {
+    sendError(err, res);
+  }
+});
+
+// eslint-disable-next-line no-unused-vars
+router.post('/:order_id/items', async (req, res, next) => {
+  debug('add item to order');
+  try {
+    const schema = Joi.object({
+      order_id: Joi.number().min(1).required(),
+      product_id: Joi.number().min(1).required(),
+      quantity: Joi.number().min(1).max(100).required(),
+    });
+    const data = {
+      order_id: req.params.order_id,
+      product_id: req.body.product_id,
+      quantity: parseInt(req.body.quantity) || 1,
+    };
+    debug(data);
+    await schema.validateAsync(data, { abortEarly: false });
+    await db.addOrderItem(data);
+    res.json({ message: 'Item Added to Order.' });
   } catch (err) {
     sendError(err, res);
   }
